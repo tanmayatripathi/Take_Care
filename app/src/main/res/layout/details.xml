@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/details_data"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter the following details:"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:textSize="20sp"
+        android:textColor="@color/primary"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/details_data">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/name_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/name_value"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_txt"
+                android:textSize="15sp"
+                android:textColor="@color/primary"/>
+            <TextView
+                android:id="@+id/blank_text_0"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_value"
+                android:text=" "
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blank_text_0"
+                android:text="e-mail:"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/email_value"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email_text"
+                android:textSize="15sp"
+                android:textColor="@color/primary"/>
+            <TextView
+                android:id="@+id/blank_text_2_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email_value"
+                android:text=" "
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/phone_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blank_text_2_2"
+                android:text="Phone Number:"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/phone_value"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone_text"
+                android:textSize="15sp"
+                android:textColor="@color/primary"/>
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/next_button"
+                android:layout_below="@id/phone_value"
+                android:background="@drawable/button_background"
+                android:id="@+id/imageButton_from"
+                android:layout_centerHorizontal="true"
+                android:clickable="true"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
