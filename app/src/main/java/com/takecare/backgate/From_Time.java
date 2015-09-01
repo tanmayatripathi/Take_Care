@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +15,7 @@ public class From_Time extends Activity {
     TimePicker timePicker;
     TextView time_selected;
     ImageView imageButton_from;
-    String[] details = new String[7];
+    String[] details_array = new String[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class From_Time extends Activity {
         time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
-        details = getIntent().getStringArrayExtra("DETAILS");
+        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         addListenerOnButton();
     }
@@ -56,9 +55,9 @@ public class From_Time extends Activity {
                 minute = timePicker.getCurrentMinute();
                 String am_pm = get_am_pm(timePicker.getCurrentHour());
                 time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
-                details[1] = String.valueOf(time_selected.getText());
-                //Log.d("Note :",details[0]);
-                //Log.d("Note :",details[1]);
+                details_array[1] = String.valueOf(time_selected.getText());
+                //Log.d("Note :",details_array[0]);
+                //Log.d("Note :",details_array[1]);
             }
         });
 
@@ -66,7 +65,7 @@ public class From_Time extends Activity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(From_Time.this, To_Date.class);
-                myIntent.putExtra("DETAILS",details);
+                myIntent.putExtra("DETAILS", details_array);
                 From_Time.this.startActivity(myIntent);
             }
         });

@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
 public class Details extends Activity {
 
@@ -17,7 +15,7 @@ public class Details extends Activity {
     EditText name_value;
     EditText phone_value;
     EditText email_value;
-    String[] details = new String[7];
+    String[] details_array = new String[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,8 @@ public class Details extends Activity {
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
 
+        details_array = getIntent().getStringArrayExtra("DETAILS");
+
         initialiseVariables();
 
         addListenerOnButton();
@@ -46,10 +46,10 @@ public class Details extends Activity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(Details.this, Verification.class);
-                details[4] = String.valueOf(name_value.getText());
-                details[5] = String.valueOf(email_value.getText());
-                details[6] = String.valueOf(phone_value.getText());
-                myIntent.putExtra("DETAILS",details);
+                details_array[4] = String.valueOf(name_value.getText());
+                details_array[5] = String.valueOf(email_value.getText());
+                details_array[6] = String.valueOf(phone_value.getText());
+                myIntent.putExtra("DETAILS", details_array);
                 Details.this.startActivity(myIntent);
             }
         });

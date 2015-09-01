@@ -17,7 +17,7 @@ public class To_Date extends Activity {
     TextView date_selected;
     TextView to_date;
     TextView to;
-    String[] details = new String[7];
+    String[] details_array = new String[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class To_Date extends Activity {
             }
         });*/
 
-        details = getIntent().getStringArrayExtra("DETAILS");
+        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         addListenerOnButton();
     }
@@ -82,7 +82,7 @@ public class To_Date extends Activity {
             @Override
             public void onClick(View view) {
                  Intent myIntent = new Intent(To_Date.this, To_Time.class);
-                 myIntent.putExtra("DETAILS",details);
+                 myIntent.putExtra("DETAILS", details_array);
                  To_Date.this.startActivity(myIntent);
             }
         });
@@ -97,7 +97,7 @@ public class To_Date extends Activity {
 
                 date_selected=(TextView)findViewById(R.id.date_selected);
                 date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
-                details[2] = String.valueOf(date_selected.getText());
+                details_array[2] = String.valueOf(date_selected.getText());
             }
         });
     }

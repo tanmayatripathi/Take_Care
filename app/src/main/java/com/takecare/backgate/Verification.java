@@ -17,7 +17,7 @@ public class Verification extends Activity {
     TextView from_time;
     TextView to_date;
     TextView to_time;
-    String[] details = new String[7];
+    String[] details_array = new String[7];
     String msg = "Android: ";
 
     @Override
@@ -34,13 +34,14 @@ public class Verification extends Activity {
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
 
+
         initialiseVariables();
 
         addListenerOnButton();
     }
 
     private void initialiseVariables() {
-        details = getIntent().getStringArrayExtra("DETAILS");
+        details_array = getIntent().getStringArrayExtra("DETAILS");
         name_value = (TextView)findViewById(R.id.name_value_1);
         email_value = (TextView)findViewById(R.id.email_value_1);
         phone_value = (TextView)findViewById(R.id.phone_value_1);
@@ -48,20 +49,20 @@ public class Verification extends Activity {
         from_time = (TextView)findViewById(R.id.from_time_value);
         to_date = (TextView)findViewById(R.id.to_date_value);
         to_time = (TextView)findViewById(R.id.to_time_value);
-        name_value.setText(details[4]);
-        email_value.setText(details[5]);
-        phone_value.setText(details[6]);
-        from_date.setText(details[0]);
-        from_time.setText(details[1]);
-        to_date.setText(details[2]);
-        to_time.setText(details[3]);
-        Log.d(msg, details[4]);
-        Log.d(msg, details[5]);
-        Log.d(msg, details[6]);
-        Log.d(msg, details[0]);
-        Log.d(msg, details[1]);
-        Log.d(msg, details[2]);
-        Log.d(msg, details[3]);
+        name_value.setText(details_array[4]);
+        email_value.setText(details_array[5]);
+        phone_value.setText(details_array[6]);
+        from_date.setText(details_array[0]);
+        from_time.setText(details_array[1]);
+        to_date.setText(details_array[2]);
+        to_time.setText(details_array[3]);
+        Log.d(msg, details_array[4]);
+        Log.d(msg, details_array[5]);
+        Log.d(msg, details_array[6]);
+        Log.d(msg, details_array[0]);
+        Log.d(msg, details_array[1]);
+        Log.d(msg, details_array[2]);
+        Log.d(msg, details_array[3]);
 
     }
 

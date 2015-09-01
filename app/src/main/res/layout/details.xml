@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_txt"
                 android:textSize="15sp"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/primary"
+                android:inputType="textPersonName"/>
             <TextView
                 android:id="@+id/blank_text_0"
                 android:layout_width="fill_parent"
@@ -55,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/email_text"
                 android:textSize="15sp"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/primary"
+                android:inputType="textEmailAddress"/>
             <TextView
                 android:id="@+id/blank_text_2_2"
                 android:layout_width="fill_parent"
@@ -76,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/phone_text"
                 android:textSize="15sp"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/primary"
+                android:inputType="phone"/>
             <ImageView
                 android:layout_margin="15dp"
                 android:layout_width="60dp"
