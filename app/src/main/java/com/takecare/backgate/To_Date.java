@@ -36,6 +36,8 @@ public class To_Date extends Activity {
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
+        details_array = getIntent().getStringArrayExtra("DETAILS");
+
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
@@ -47,6 +49,7 @@ public class To_Date extends Activity {
 
         date_selected=(TextView)findViewById(R.id.date_selected);
         date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
+        details_array[2] = String.valueOf(date_selected.getText());
 
         /*calend = (CalendarView) findViewById(R.id.calendView);
 
@@ -70,8 +73,6 @@ public class To_Date extends Activity {
                 from_date.setText("From: "+ dayOfMonth + " / " + month + " / " + year);
             }
         });*/
-
-        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         addListenerOnButton();
     }

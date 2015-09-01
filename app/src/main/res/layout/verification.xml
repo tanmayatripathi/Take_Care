@@ -40,12 +40,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name_txt"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_0"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name_value"
+                android:layout_below="@id/name_value_1"
                 android:text=" "
                 android:textSize="20sp" />
             <TextView
@@ -60,12 +61,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/email_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_2_2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/email_value"
+                android:layout_below="@id/email_value_1"
                 android:text=" "
                 android:textSize="20sp" />
             <TextView
@@ -80,12 +82,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/phone_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_0_3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/phone_value"
+                android:layout_below="@id/phone_value_1"
                 android:text=" "
                 android:textSize="20sp" />
             <TextView
@@ -100,6 +103,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/from_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_2_4"
@@ -120,6 +124,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/from_time_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_2_5"
@@ -140,6 +145,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/to_date_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_2_6"
@@ -160,6 +166,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/to_time_text"
+                android:textColor="@color/primary"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/blank_text_2_7"

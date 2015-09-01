@@ -18,6 +18,7 @@ public class To_Time extends Activity {
     TextView to_time;
     TextView to;
     String[] details_array = new String[7];
+    String min_str;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class To_Time extends Activity {
 
         to_time=(TextView)findViewById(R.id.start_time_q);
         to_time.setText("On what time would you want the service to end?");
+
+        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         to=(TextView)findViewById(R.id.from_text);
         to.setText("To: ");
@@ -45,11 +48,18 @@ public class To_Time extends Activity {
         String hour = Integer.toString(((timePicker.getCurrentHour().intValue())>12)?((timePicker.getCurrentHour().intValue()) - 12) : (timePicker.getCurrentHour().intValue()));
         String am_pm = get_am_pm(timePicker.getCurrentHour());
         int minute = timePicker.getCurrentMinute();
-        time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
+        if(hour.length()==1){
+            hour="0"+hour;
+        }
+        if(minute<10){
+            min_str="0"+String.valueOf(minute);
+        }else{
+            min_str=String.valueOf(minute);
+        }
+        time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
+        details_array[3] = String.valueOf(time_selected.getText());
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
-
-        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         addListenerOnButton();
     }
@@ -62,8 +72,16 @@ public class To_Time extends Activity {
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
                 String hour = Integer.toString(((view.getCurrentHour().intValue()) > 12) ? ((view.getCurrentHour().intValue()) - 12) : (view.getCurrentHour().intValue()));
                 minute = timePicker.getCurrentMinute();
+                if(hour.length()==1){
+                    hour="0"+hour;
+                }
+                if(minute<10){
+                    min_str="0"+String.valueOf(minute);
+                }else{
+                    min_str=String.valueOf(minute);
+                }
                 String am_pm = get_am_pm(timePicker.getCurrentHour());
-                time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
+                time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
                 details_array[3] = String.valueOf(time_selected.getText());
             }
         });

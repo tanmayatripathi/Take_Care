@@ -16,6 +16,7 @@ public class From_Time extends Activity {
     TextView time_selected;
     ImageView imageButton_from;
     String[] details_array = new String[7];
+    String min_str;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class From_Time extends Activity {
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
+        details_array = getIntent().getStringArrayExtra("DETAILS");
+
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
@@ -37,10 +40,18 @@ public class From_Time extends Activity {
         String hour = Integer.toString(((timePicker.getCurrentHour().intValue())>12)?((timePicker.getCurrentHour().intValue()) - 12) : (timePicker.getCurrentHour().intValue()));
         String am_pm = get_am_pm(timePicker.getCurrentHour());
         int minute = timePicker.getCurrentMinute();
-        time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
+        if(hour.length()==1){
+            hour="0"+hour;
+        }
+        if(minute<10){
+            min_str="0"+String.valueOf(minute);
+        }else{
+            min_str=String.valueOf(minute);
+        }
+        time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
+        details_array[1] = String.valueOf(time_selected.getText());
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
-        details_array = getIntent().getStringArrayExtra("DETAILS");
 
         addListenerOnButton();
     }
@@ -54,7 +65,15 @@ public class From_Time extends Activity {
                 String hour = Integer.toString(((view.getCurrentHour().intValue()) > 12) ? ((view.getCurrentHour().intValue()) - 12) : (view.getCurrentHour().intValue()));
                 minute = timePicker.getCurrentMinute();
                 String am_pm = get_am_pm(timePicker.getCurrentHour());
-                time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
+                if(hour.length()==1){
+                    hour="0"+hour;
+                }
+                if(minute<10){
+                    min_str="0"+String.valueOf(minute);
+                }else{
+                    min_str=String.valueOf(minute);
+                }
+                time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
                 details_array[1] = String.valueOf(time_selected.getText());
                 //Log.d("Note :",details_array[0]);
                 //Log.d("Note :",details_array[1]);

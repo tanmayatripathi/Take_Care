@@ -40,6 +40,7 @@ public class From_Date extends Activity {
 
         date_selected=(TextView)findViewById(R.id.date_selected);
         date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
+        details_array[0] = String.valueOf(date_selected.getText());
 
         /*calend = (CalendarView) findViewById(R.id.calendView);
 
