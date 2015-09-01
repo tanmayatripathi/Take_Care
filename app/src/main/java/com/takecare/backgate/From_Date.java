@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CalendarView;
@@ -16,6 +17,7 @@ public class From_Date extends Activity {
     DatePicker date_pick_from;
     ImageView imageButton_from;
     TextView date_selected;
+    String[] details = new String[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class From_Date extends Activity {
             @Override
             public void onClick(View view) {
                  Intent myIntent = new Intent(From_Date.this, From_Time.class);
+                 myIntent.putExtra("DETAILS",details);
                  From_Date.this.startActivity(myIntent);
             }
         });
@@ -87,6 +90,8 @@ public class From_Date extends Activity {
 
                 date_selected=(TextView)findViewById(R.id.date_selected);
                 date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
+                details[0] = String.valueOf(date_selected.getText());
+                //Log.d("Note: ",details[0]);
             }
         });
     }

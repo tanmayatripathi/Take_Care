@@ -17,6 +17,7 @@ public class To_Time extends Activity {
     ImageView imageButton_from;
     TextView to_time;
     TextView to;
+    String[] details = new String[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public class To_Time extends Activity {
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
 
+        details = getIntent().getStringArrayExtra("DETAILS");
+
         addListenerOnButton();
     }
 
@@ -61,6 +64,7 @@ public class To_Time extends Activity {
                 minute = timePicker.getCurrentMinute();
                 String am_pm = get_am_pm(timePicker.getCurrentHour());
                 time_selected.setText(" "+String.valueOf(hour)+" : "+String.valueOf(minute)+" "+am_pm);
+                details[3] = String.valueOf(time_selected.getText());
             }
         });
 
