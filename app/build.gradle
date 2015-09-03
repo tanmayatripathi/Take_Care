@@ -21,4 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('/Users/sudhanshu/AndroidStudioProjects/Take_Care/libs/activation.jar')
+    compile files('/Users/sudhanshu/AndroidStudioProjects/Take_Care/libs/additionnal.jar')
+    compile files('/Users/sudhanshu/AndroidStudioProjects/Take_Care/libs/mail.jar')
 }

@@ -2,11 +2,26 @@ package com.takecare.backgate;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class Verification extends Activity {
 
@@ -19,6 +34,10 @@ public class Verification extends Activity {
     TextView to_time;
     String[] details_array = new String[7];
     String msg = "Android: ";
+    private static final String username = "takecareapp@yahoo.com";
+    private static final String password = "T3st@pp";
+    private static final String email = "silver.ballers@gmail.com";
+    ImageView imageButton_from;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +60,7 @@ public class Verification extends Activity {
     }
 
     private void initialiseVariables() {
+        imageButton_from = (ImageView)findViewById(R.id.imageButton_from);
         details_array = getIntent().getStringArrayExtra("DETAILS");
         name_value = (TextView)findViewById(R.id.name_value_1);
         email_value = (TextView)findViewById(R.id.email_value_1);
@@ -66,6 +86,80 @@ public class Verification extends Activity {
 
     }
 
+    private void sendMail(String email, String subject, String messagebody){
+        Session session = createSessionObject();
+
+        try{
+            Message message = createMessage(email, subject, messagebody, session);
+            new SendMailTask().execute(message);
+        }catch (AddressException e){
+            e.printStackTrace();
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private Message createMessage(String email, String subject, String messagebody, Session session) throws MessagingException, UnsupportedEncodingException{
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("takecareapp@yahoo.com", "TakeCare"));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, email));
+        message.setSubject(subject);
+        message.setText(messagebody);
+        return message;
+
+    }
+
+    private Session createSessionObject(){
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.mail.yahoo.com");
+        properties.put("mail.smtp.port","587");
+
+        return Session.getInstance(properties, new javax.mail.Authenticator(){
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(username, password);
+            }
+
+        });
+    }
+
+    private class SendMailTask extends AsyncTask<Message, Void, Void>{
+        private ProgressDialog progressDialog;
+
+        protected void onPreExecute(){
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(Verification.this,"Please Wait","Sending Mail", true, false);
+        }
+
+        protected void onPostExecute(Void aVoid){
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected Void doInBackground(Message... messages) {
+            try{
+                Transport.send(messages[0]);
+            }catch (MessagingException e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
     public void addListenerOnButton() {
+        imageButton_from.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String subject = "Take Care App Demo";
+                String messagebody = details_array[0] + " " + details_array[1] + " to " + details_array[2] + " " +details_array[3] + " \nContact " + details_array[4] + " " + details_array[5] + " " + details_array[6];
+                sendMail(email,subject,messagebody);
+            }
+        });
     }
 }
