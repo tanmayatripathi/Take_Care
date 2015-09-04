@@ -45,9 +45,10 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/hourly_service_press"
                 android:text=" Read More > "
-                android:textColor="@color/white"
+                android:textColor="@drawable/text_color_read_more"
                 android:id="@+id/read_more_hourly"
-                android:background="@drawable/back_white"/>
+                android:background="@drawable/button_background_read_more"
+                android:clickable="true"/>
             <ImageView
                 android:layout_margin="15dp"
                 android:layout_width="60dp"

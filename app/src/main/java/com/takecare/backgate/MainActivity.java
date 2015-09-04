@@ -2,7 +2,10 @@ package com.takecare.backgate;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -24,6 +27,8 @@ public class MainActivity extends Activity {
     private RelativeLayout rel_lay_monthly;
     private RelativeLayout rel_lay_entertainment;
 
+    private TextView read_more_hourly;
+
     private TextView hourly_service;
     private TextView weekly_service;
     private TextView weekend_service;
@@ -35,6 +40,8 @@ public class MainActivity extends Activity {
     private ImageView imageButton_weekend;
     private ImageView imageButton_monthly;
     private ImageView imageButton_entertainment;
+
+    String[] service_read_more = new String[1];
 
     String hourly_text = "<font color=#00000>Hourly </font> <font color=#009688>Service</font>";
     String weekly_text = "<font color=#00000>Weekly </font> <font color=#009688>Service</font>";
@@ -68,6 +75,8 @@ public class MainActivity extends Activity {
         imageButton_monthly=(ImageView)findViewById(R.id.imageButton_monthly);
         imageButton_entertainment=(ImageView)findViewById(R.id.imageButton_entertainment);
 
+        read_more_hourly=(TextView)findViewById(R.id.read_more_hourly);
+
         ActionBar mActionBar = getActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
@@ -85,9 +94,36 @@ public class MainActivity extends Activity {
         imageButton_hour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    rel_lay_hourly = (RelativeLayout) findViewById(R.id.rel_lay_hourly);
+                    if(rel_lay_hourly.getVisibility()==view.VISIBLE) {
+                        Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                    else{
+                        try {
+                            animate_hourly(view);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        read_more_hourly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 rel_lay_hourly = (RelativeLayout) findViewById(R.id.rel_lay_hourly);
                 if(rel_lay_hourly.getVisibility()==view.VISIBLE) {
-                    Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                    Intent myIntent = new Intent(MainActivity.this, Read_More.class);
+                    service_read_more[0]="HOUR";
+                    myIntent.putExtra("DETAILS", service_read_more);
                     MainActivity.this.startActivity(myIntent);
                 }
                 else{
@@ -285,6 +321,13 @@ public class MainActivity extends Activity {
 
         return "";
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

@@ -3,6 +3,10 @@ package com.takecare.backgate;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -21,7 +27,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class Verification extends Activity {
 
@@ -36,7 +44,7 @@ public class Verification extends Activity {
     String msg = "Android: ";
     private static final String username = "takecareapp@yahoo.com";
     private static final String password = "T3st@pp";
-    private static final String email = "silver.ballers@gmail.com";
+    private static final String email = "tanmayatripathi@gmail.com";
     ImageView imageButton_from;
 
     @Override
@@ -107,7 +115,71 @@ public class Verification extends Activity {
         message.setFrom(new InternetAddress("takecareapp@yahoo.com", "TakeCare"));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, email));
         message.setSubject(subject);
-        message.setText(messagebody);
+        MimeMultipart multipart = new MimeMultipart("related");
+        // first part (the html)
+        BodyPart messageBodyPart = new MimeBodyPart();
+        String htmlText = "<!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->\n" +
+                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">\n" +
+                "<html>\n" +
+                "<body>\n" +
+                "<table>\n" +
+                "<tr><td bgcolor=\"#009688\" width='100%'><h1 style=\"\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>\n" +
+                "</td></tr>\n" +
+                "</table>\n" +
+                "<p>Hi Team</p>\n" +
+                "<p>The following individual would like your help-</p>\n" +
+                "<hr>\n" +
+                "<table>\n" +
+                "<tr>\n" +
+                "<td>Name:</td> \n" +
+                "                    <td>"+details_array[4]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>e-mail:</td> \n" +
+                "                    <td>"+details_array[5]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>Phone no:</td> \n" +
+                "                    <td>"+details_array[6]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>From Date:</td> \n" +
+                "                    <td>"+details_array[0]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>From Time:</td> \n" +
+                "                    <td>"+details_array[1]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>To Date:</td> \n" +
+                "                    <td>"+details_array[2]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>To Time</td> \n" +
+                "                    <td>"+details_array[3]+"</td>  \n" +
+                "                  </tr>\n" +
+                "</table>\n" +
+                "<hr>\n" +
+                "<h5 grey>This is a system generated email, do not reply to this email id.</h5>\n" +
+                "                <p>Thanks and Regards</p>\n" +
+                "<table>\n" +
+                "<tr><td bgcolor=\"#000000\" width='100%'> \n" +
+                "                <header style=background: black;><img src=\"http://www.wetakecare.co.in/images/logo.png\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</header>\n" +
+                "</td></tr>\n" +
+                "</table>\n" +
+                "</body></html>";
+        //String htmlText = "<H1>Hello</H1><img src=\"http://www.wetakecare.co.in/images/logo.png\">";
+        messageBodyPart.setContent(htmlText, "text/html");
+        // add it
+        multipart.addBodyPart(messageBodyPart);
+        //MimeMultipart multipart = new MimeMultipart("related");
+        //BodyPart messageBodyPart = new MimeBodyPart();
+        //String htmlText = "<H1>Hello</H1><img src=\"cid:image\">";
+        //messageBodyPart.setContent(htmlText, "text/html");
+        // add it
+        //multipart.addBodyPart(messageBodyPart);
+        message.setContent(multipart);
+        //message.setText(messagebody);
         return message;
 
     }
@@ -132,12 +204,23 @@ public class Verification extends Activity {
 
         protected void onPreExecute(){
             super.onPreExecute();
-            progressDialog = ProgressDialog.show(Verification.this,"Please Wait","Sending Mail", true, false);
+            progressDialog = ProgressDialog.show(Verification.this,"","Taking Care", true, false);
+            //progressDialog=new ProgressDialog(getBaseContext());
+            //progressDialog = new ProgressDialog(BackupRestoreActivityContext);
+            progressDialog.setCancelable(true);
+            progressDialog.setIcon(R.drawable.logo);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setIndeterminateDrawable(Verification.this.getDrawable(R.drawable.pb_animation));
+            progressDialog.show();
         }
 
         protected void onPostExecute(Void aVoid){
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            Intent myIntent = new Intent(Verification.this, Thank_You.class);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Verification.this.startActivity(myIntent);
         }
 
 
@@ -156,10 +239,24 @@ public class Verification extends Activity {
         imageButton_from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String subject = "Take Care App Demo";
-                String messagebody = details_array[0] + " " + details_array[1] + " to " + details_array[2] + " " +details_array[3] + " \nContact " + details_array[4] + " " + details_array[5] + " " + details_array[6];
-                sendMail(email,subject,messagebody);
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    String subject = details_array[4]+" has requested TakeCare";
+                    String messagebody = details_array[0] + " " + details_array[1] + " to " + details_array[2] + " " +details_array[3] + " \nContact " + details_array[4] + " " + details_array[5] + " " + details_array[6];
+                    //String messagebody = "<html><body><table><tr><td><br/>" +details_array[0] +"</td></tr><br/><br/>"+"Get <b> Best Score </b> in your Android Phone.<br/>"+"<a href=\\\"" + details_array[5] + "\\\">" + details_array[6]+ "</a>";
+                    sendMail(email,subject,messagebody);
+                }
+                else{
+                    Toast.makeText(Verification.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
