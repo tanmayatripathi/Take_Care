@@ -49,16 +49,27 @@
                 android:id="@+id/read_more_hourly"
                 android:background="@drawable/button_background_read_more"
                 android:clickable="true"/>
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/next_button"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_hour"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:clickable="true"/>
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_1"
+                    android:id="@+id/imageButton_hour"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_hour"
+                    android:text="Next"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -99,18 +110,31 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/weekly_service_press"
                 android:text=" Read More > "
-                android:textColor="@color/white"
+                android:textColor="@drawable/text_color_read_more"
                 android:id="@+id/read_more_weekly"
-                android:background="@drawable/back_white"/>
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/next_button"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_weekly"
-                android:layout_alignParentRight="true"/>
+                android:background="@drawable/button_background_read_more"
+                android:clickable="true"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_2"
+                    android:id="@+id/imageButton_weekly"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_weekly"
+                    android:text="Next"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -151,18 +175,31 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/weekend_service_press"
                 android:text=" Read More > "
-                android:textColor="@color/white"
+                android:textColor="@drawable/text_color_read_more"
                 android:id="@+id/read_more_weekend"
-                android:background="@drawable/back_white"/>
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/next_button"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_weekend"
-                android:layout_alignParentRight="true"/>
+                android:background="@drawable/button_background_read_more"
+                android:clickable="true"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_3"
+                    android:id="@+id/imageButton_weekend"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_weekend"
+                    android:text="Next"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -202,18 +239,31 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/monthly_service_press"
                 android:text=" Read More > "
-                android:textColor="@color/white"
+                android:textColor="@drawable/text_color_read_more"
                 android:id="@+id/read_more_monthly"
-                android:background="@drawable/back_white"/>
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/next_button"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_monthly"
-                android:layout_alignParentRight="true"/>
+                android:background="@drawable/button_background_read_more"
+                android:clickable="true"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_4"
+                    android:id="@+id/imageButton_monthly"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_monthly"
+                    android:text="Next"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -253,19 +303,31 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/entertainment_service_press"
                 android:text=" Read More > "
-                android:textColor="@color/white"
+                android:textColor="@drawable/text_color_read_more"
                 android:id="@+id/read_more_entertainment"
-                android:background="@drawable/back_white"/>
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/next_button"
-                android:layout_alignRight="@id/entertainment_service_press"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_entertainment"
-                android:layout_alignParentRight="true"/>
+                android:background="@drawable/button_background_read_more"
+                android:clickable="true"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_5"
+                    android:id="@+id/imageButton_entertainment"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_entertainment"
+                    android:text="Next"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

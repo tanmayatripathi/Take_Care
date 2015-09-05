@@ -18,6 +18,7 @@ public class To_Date extends Activity {
     TextView to_date;
     TextView to;
     String[] details_array = new String[7];
+    String[] incoming_text=new String[1];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class To_Date extends Activity {
         LayoutInflater mInflater = LayoutInflater.from(this);
 
         details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
         mActionBar.setCustomView(mCustomView);
@@ -82,9 +84,18 @@ public class To_Date extends Activity {
         imageButton_from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Intent myIntent = new Intent(To_Date.this, To_Time.class);
-                 myIntent.putExtra("DETAILS", details_array);
-                 To_Date.this.startActivity(myIntent);
+                if(incoming_text[0].equals("WEEKLY") || incoming_text[0].equals("WEEKEND") || incoming_text[0].equals("MONTHLY")){
+                    Intent myIntent = new Intent(To_Date.this, Details.class);
+                    myIntent.putExtra("DETAILS", details_array);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
+                    To_Date.this.startActivity(myIntent);
+                }
+                else {
+                    Intent myIntent = new Intent(To_Date.this, To_Time.class);
+                    myIntent.putExtra("DETAILS", details_array);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
+                    To_Date.this.startActivity(myIntent);
+                }
             }
         });
 

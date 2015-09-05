@@ -38,11 +38,27 @@ public class Read_More extends Activity {
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
 
         initialiseVariables();
-        incoming_text = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         if(incoming_text[0].equals("HOUR")){
             service_exp.setText(R.string.hourly_service);
             service_exp_2.setText(R.string.hourly_service_2);
+        }
+        else if(incoming_text[0].equals("WEEKLY")){
+            service_exp.setText(R.string.weekly_service);
+            service_exp_2.setText(R.string.weekly_service_2);
+        }
+        else if(incoming_text[0].equals("WEEKEND")){
+            service_exp.setText(R.string.weekend_service);
+            service_exp_2.setText(R.string.weekend_service_2);
+        }
+        else if(incoming_text[0].equals("MONTHLY")){
+            service_exp.setText(R.string.monthly_service);
+            service_exp_2.setText(R.string.monthly_service_2);
+        }
+        else if(incoming_text[0].equals("ENTERTAINMENT")){
+            service_exp.setText(R.string.entertainment_service);
+            service_exp_2.setText(R.string.entertainment_service_2);
         }
 
         addListenerOnButton();
@@ -56,6 +72,7 @@ public class Read_More extends Activity {
                 boolean network_available=isNetworkAvailable();
                 if(network_available){
                     Intent myIntent = new Intent(Read_More.this, From_Date.class);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
                     Read_More.this.startActivity(myIntent);
                 }
                 else{

@@ -28,6 +28,10 @@ public class MainActivity extends Activity {
     private RelativeLayout rel_lay_entertainment;
 
     private TextView read_more_hourly;
+    private TextView read_more_weekly;
+    private TextView read_more_weekend;
+    private TextView read_more_monthly;
+    private TextView read_more_entertainment;
 
     private TextView hourly_service;
     private TextView weekly_service;
@@ -76,6 +80,10 @@ public class MainActivity extends Activity {
         imageButton_entertainment=(ImageView)findViewById(R.id.imageButton_entertainment);
 
         read_more_hourly=(TextView)findViewById(R.id.read_more_hourly);
+        read_more_weekly=(TextView)findViewById(R.id.read_more_weekly);
+        read_more_weekend=(TextView)findViewById(R.id.read_more_weekend);
+        read_more_monthly=(TextView)findViewById(R.id.read_more_monthly);
+        read_more_entertainment=(TextView)findViewById(R.id.read_more_entertainment);
 
         ActionBar mActionBar = getActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
@@ -99,11 +107,121 @@ public class MainActivity extends Activity {
                     rel_lay_hourly = (RelativeLayout) findViewById(R.id.rel_lay_hourly);
                     if(rel_lay_hourly.getVisibility()==view.VISIBLE) {
                         Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        service_read_more[0]="HOUR";
+                        myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
                         MainActivity.this.startActivity(myIntent);
                     }
                     else{
                         try {
                             animate_hourly(view);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        imageButton_weekly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    rel_lay_weekly = (RelativeLayout) findViewById(R.id.rel_lay_weekly);
+                    if(rel_lay_weekly.getVisibility()==view.VISIBLE) {
+                        Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        service_read_more[0]="WEEKLY";
+                        myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                    else{
+                        try {
+                            animate_weekly(view);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        imageButton_weekend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    rel_lay_weekend = (RelativeLayout) findViewById(R.id.rel_lay_weekend);
+                    if(rel_lay_weekend.getVisibility()==view.VISIBLE) {
+                        Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        service_read_more[0]="WEEKEND";
+                        myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                    else{
+                        try {
+                            animate_weekend(view);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        imageButton_monthly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    rel_lay_monthly = (RelativeLayout) findViewById(R.id.rel_lay_monthly);
+                    if(rel_lay_monthly.getVisibility()==view.VISIBLE) {
+                        Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        service_read_more[0]="MONTHLY";
+                        myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                    else{
+                        try {
+                            animate_monthly(view);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Network is currently unavailable.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        imageButton_entertainment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean network_available=isNetworkAvailable();
+                if(network_available){
+                    rel_lay_entertainment = (RelativeLayout) findViewById(R.id.rel_lay_entertainment);
+                    if(rel_lay_entertainment.getVisibility()==view.VISIBLE) {
+                        Intent myIntent = new Intent(MainActivity.this, From_Date.class);
+                        service_read_more[0]="ENTERTAINMENT";
+                        myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                    else{
+                        try {
+                            animate_entertainment(view);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -123,12 +241,92 @@ public class MainActivity extends Activity {
                 if(rel_lay_hourly.getVisibility()==view.VISIBLE) {
                     Intent myIntent = new Intent(MainActivity.this, Read_More.class);
                     service_read_more[0]="HOUR";
-                    myIntent.putExtra("DETAILS", service_read_more);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
                     MainActivity.this.startActivity(myIntent);
                 }
                 else{
                     try {
                         animate_hourly(view);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        read_more_weekly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rel_lay_weekly = (RelativeLayout) findViewById(R.id.rel_lay_weekly);
+                if(rel_lay_weekly.getVisibility()==view.VISIBLE) {
+                    Intent myIntent = new Intent(MainActivity.this, Read_More.class);
+                    service_read_more[0]="WEEKLY";
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                    MainActivity.this.startActivity(myIntent);
+                }
+                else{
+                    try {
+                        animate_weekly(view);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        read_more_weekend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rel_lay_weekend = (RelativeLayout) findViewById(R.id.rel_lay_weekend);
+                if(rel_lay_weekend.getVisibility()==view.VISIBLE) {
+                    Intent myIntent = new Intent(MainActivity.this, Read_More.class);
+                    service_read_more[0]="WEEKEND";
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                    MainActivity.this.startActivity(myIntent);
+                }
+                else{
+                    try {
+                        animate_weekend(view);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        read_more_monthly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rel_lay_monthly = (RelativeLayout) findViewById(R.id.rel_lay_monthly);
+                if(rel_lay_monthly.getVisibility()==view.VISIBLE) {
+                    Intent myIntent = new Intent(MainActivity.this, Read_More.class);
+                    service_read_more[0]="MONTHLY";
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                    MainActivity.this.startActivity(myIntent);
+                }
+                else{
+                    try {
+                        animate_monthly(view);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        read_more_entertainment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rel_lay_entertainment = (RelativeLayout) findViewById(R.id.rel_lay_entertainment);
+                if(rel_lay_entertainment.getVisibility()==view.VISIBLE) {
+                    Intent myIntent = new Intent(MainActivity.this, Read_More.class);
+                    service_read_more[0]="ENTERTAINMENT";
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", service_read_more);
+                    MainActivity.this.startActivity(myIntent);
+                }
+                else{
+                    try {
+                        animate_entertainment(view);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,7 +39,9 @@ public class Verification extends Activity {
     TextView from_time;
     TextView to_date;
     TextView to_time;
+    TextView package_sel_val;
     String[] details_array = new String[7];
+    String[] incoming_text=new String[1];
     String msg = "Android: ";
     private static final String username = "takecareapp@yahoo.com";
     private static final String password = "T3st@pp";
@@ -70,6 +71,7 @@ public class Verification extends Activity {
     private void initialiseVariables() {
         imageButton_from = (ImageView)findViewById(R.id.imageButton_from);
         details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
         name_value = (TextView)findViewById(R.id.name_value_1);
         email_value = (TextView)findViewById(R.id.email_value_1);
         phone_value = (TextView)findViewById(R.id.phone_value_1);
@@ -77,21 +79,43 @@ public class Verification extends Activity {
         from_time = (TextView)findViewById(R.id.from_time_value);
         to_date = (TextView)findViewById(R.id.to_date_value);
         to_time = (TextView)findViewById(R.id.to_time_value);
+        package_sel_val=(TextView)findViewById(R.id.package_sel_val);
         name_value.setText(details_array[4]);
         email_value.setText(details_array[5]);
         phone_value.setText(details_array[6]);
         from_date.setText(details_array[0]);
-        from_time.setText(details_array[1]);
-        to_date.setText(details_array[2]);
-        to_time.setText(details_array[3]);
-        Log.d(msg, details_array[4]);
-        Log.d(msg, details_array[5]);
-        Log.d(msg, details_array[6]);
-        Log.d(msg, details_array[0]);
-        Log.d(msg, details_array[1]);
-        Log.d(msg, details_array[2]);
-        Log.d(msg, details_array[3]);
-
+        if(incoming_text[0].equals("ENTERTAINMENT")){
+            from_time.setText("NA");
+            to_date.setText("NA");
+            to_time.setText("NA");
+            TextView from_text=(TextView)findViewById(R.id.from_text);
+            from_text.setText("Service date:");
+            package_sel_val.setText("Entertainment Package");
+        }
+        else if(incoming_text[0].equals("HOUR")){
+            from_time.setText(details_array[1]);
+            to_date.setText(details_array[2]);
+            to_time.setText(details_array[3]);
+            package_sel_val.setText("Hourly Package");
+        }
+        else if(incoming_text[0].equals("WEEKLY")){
+            from_time.setText("NA");
+            to_date.setText(details_array[2]);
+            to_time.setText("NA");
+            package_sel_val.setText("Weekly Package");
+        }
+        else if(incoming_text[0].equals("WEEKEND")){
+            from_time.setText("NA");
+            to_date.setText(details_array[2]);
+            to_time.setText("NA");
+            package_sel_val.setText("Weekend Package");
+        }
+        else if(incoming_text[0].equals("MONTHLY")){
+            from_time.setText("NA");
+            to_date.setText(details_array[2]);
+            to_time.setText("NA");
+            package_sel_val.setText("Monthly Package");
+        }
     }
 
     private void sendMail(String email, String subject, String messagebody){
@@ -131,32 +155,36 @@ public class Verification extends Activity {
                 "<hr>\n" +
                 "<table>\n" +
                 "<tr>\n" +
-                "<td>Name:</td> \n" +
+                "<td>Name: </td> \n" +
                 "                    <td>"+details_array[4]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>e-mail:</td> \n" +
+                "<td>e-mail: </td> \n" +
                 "                    <td>"+details_array[5]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>Phone no:</td> \n" +
+                "<td>Phone no: </td> \n" +
                 "                    <td>"+details_array[6]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>From Date:</td> \n" +
+                "<td>From Date: </td> \n" +
                 "                    <td>"+details_array[0]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>From Time:</td> \n" +
+                "<td>From Time: </td> \n" +
                 "                    <td>"+details_array[1]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>To Date:</td> \n" +
+                "<td>To Date: </td> \n" +
                 "                    <td>"+details_array[2]+"</td>  \n" +
                 "                  </tr>\n" +
                 "<tr>\n" +
-                "<td>To Time</td> \n" +
+                "<td>To Time: </td> \n" +
                 "                    <td>"+details_array[3]+"</td>  \n" +
+                "                  </tr>\n" +
+                "<tr>\n" +
+                "<td>Package Requested: </td> \n" +
+                "                    <td>"+incoming_text[0]+"</td>  \n" +
                 "                  </tr>\n" +
                 "</table>\n" +
                 "<hr>\n" +
@@ -208,6 +236,7 @@ public class Verification extends Activity {
             //progressDialog=new ProgressDialog(getBaseContext());
             //progressDialog = new ProgressDialog(BackupRestoreActivityContext);
             progressDialog.setCancelable(true);
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setIcon(R.drawable.logo);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setIndeterminate(true);
@@ -242,8 +271,9 @@ public class Verification extends Activity {
                 boolean network_available=isNetworkAvailable();
                 if(network_available){
                     String subject = details_array[4]+" has requested TakeCare";
-                    String messagebody = details_array[0] + " " + details_array[1] + " to " + details_array[2] + " " +details_array[3] + " \nContact " + details_array[4] + " " + details_array[5] + " " + details_array[6];
+                    //String messagebody = details_array[0] + " " + details_array[1] + " to " + details_array[2] + " " +details_array[3] + " \nContact " + details_array[4] + " " + details_array[5] + " " + details_array[6];
                     //String messagebody = "<html><body><table><tr><td><br/>" +details_array[0] +"</td></tr><br/><br/>"+"Get <b> Best Score </b> in your Android Phone.<br/>"+"<a href=\\\"" + details_array[5] + "\\\">" + details_array[6]+ "</a>";
+                    String messagebody="NA";
                     sendMail(email,subject,messagebody);
                 }
                 else{

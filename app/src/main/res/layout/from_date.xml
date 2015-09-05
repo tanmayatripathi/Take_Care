@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/rel_cal_main">
 
     <TextView
         android:id="@+id/start_date_q"
@@ -54,15 +55,26 @@
         android:id="@+id/date_pick_from">
     </DatePicker>
 
-    <ImageView
-        android:layout_margin="15dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/next_button"
-        android:background="@drawable/button_background"
-        android:id="@+id/imageButton_from"
-        android:layout_centerHorizontal="true"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/date_pick_from"
-        android:clickable="true"/>
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background_support_6"
+            android:id="@+id/imageButton_from"
+            android:clickable="true"/>
+        <TextView
+            android:id="@+id/next_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageButton_from"
+            android:text="Next"/>
+    </RelativeLayout>
 
 </RelativeLayout>

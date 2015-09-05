@@ -32,16 +32,27 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/service_exp_blank"
                 android:textSize="20sp" />
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/home"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/service_exp_2"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_from"
-                android:layout_centerHorizontal="true"
-                android:clickable="true"/>
+                android:layout_centerHorizontal="true">
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_2"
+                    android:id="@+id/imageButton_from"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_from"
+                    android:text="Home"/>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

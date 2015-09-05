@@ -19,6 +19,7 @@ public class To_Time extends Activity {
     TextView to;
     String[] details_array = new String[7];
     String min_str;
+    String[] incoming_text=new String[1];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class To_Time extends Activity {
         to_time.setText("On what time would you want the service to end?");
 
         details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         to=(TextView)findViewById(R.id.from_text);
         to.setText("To: ");
@@ -91,6 +93,7 @@ public class To_Time extends Activity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(To_Time.this, Details.class);
                 myIntent.putExtra("DETAILS", details_array);
+                myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
                 To_Time.this.startActivity(myIntent);
             }
         });

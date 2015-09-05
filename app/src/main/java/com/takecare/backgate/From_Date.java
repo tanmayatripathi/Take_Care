@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class From_Date extends Activity {
@@ -16,6 +17,8 @@ public class From_Date extends Activity {
     ImageView imageButton_from;
     TextView date_selected;
     String[] details_array = new String[7];
+    String[] incoming_text=new String[1];
+    String linear_value;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,14 +36,45 @@ public class From_Date extends Activity {
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
 
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
+
         date_pick_from = (DatePicker) findViewById(R.id.date_pick_from);
         int day = date_pick_from.getDayOfMonth();
         String month_word = getMonth(date_pick_from.getMonth() + 1);
         int year = date_pick_from.getYear();
 
-        date_selected=(TextView)findViewById(R.id.date_selected);
-        date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
-        details_array[0] = String.valueOf(date_selected.getText());
+        if(incoming_text[0].equals("ENTERTAINMENT")){
+            date_selected=(TextView)findViewById(R.id.date_selected);
+            date_selected.setText(" "+month_word+" "+String.valueOf(year));
+            details_array[0] = String.valueOf(date_selected.getText());
+
+            LinearLayout l1=(LinearLayout)date_pick_from.getChildAt(0);
+            LinearLayout ll2 = (LinearLayout)l1.getChildAt(0);
+            linear_value=ll2.getChildAt(0).toString();
+            if(linear_value.toLowerCase().contains("day")) {
+                ll2.getChildAt(0).setVisibility(View.INVISIBLE);
+            }
+            linear_value=ll2.getChildAt(1).toString();
+            if(linear_value.toLowerCase().contains("day")) {
+                ll2.getChildAt(1).setVisibility(View.INVISIBLE);
+            }
+            linear_value=ll2.getChildAt(2).toString();
+            if(linear_value.toLowerCase().contains("day")) {
+                ll2.getChildAt(2).setVisibility(View.INVISIBLE);
+            }
+
+            TextView start_date_q=(TextView) findViewById(R.id.start_date_q);
+            start_date_q.setText("Please select the month in which you would like your entertainment package.");
+
+            TextView from_text=(TextView)findViewById(R.id.from_text);
+            from_text.setText("On: ");
+        }
+        else {
+            date_selected = (TextView) findViewById(R.id.date_selected);
+            date_selected.setText(String.valueOf(" " + day) + " " + month_word + " " + String.valueOf(year));
+            details_array[0] = String.valueOf(date_selected.getText());
+        }
+
 
         /*calend = (CalendarView) findViewById(R.id.calendView);
 
@@ -73,9 +107,24 @@ public class From_Date extends Activity {
         imageButton_from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Intent myIntent = new Intent(From_Date.this, From_Time.class);
-                 myIntent.putExtra("DETAILS", details_array);
-                 From_Date.this.startActivity(myIntent);
+                if(incoming_text[0].equals("ENTERTAINMENT")){
+                    Intent myIntent = new Intent(From_Date.this, Details.class);
+                    myIntent.putExtra("DETAILS", details_array);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
+                    From_Date.this.startActivity(myIntent);
+                }
+                else if(incoming_text[0].equals("WEEKLY") || incoming_text[0].equals("WEEKEND") || incoming_text[0].equals("MONTHLY")){
+                    Intent myIntent = new Intent(From_Date.this, To_Date.class);
+                    myIntent.putExtra("DETAILS", details_array);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
+                    From_Date.this.startActivity(myIntent);
+                }
+                else {
+                    Intent myIntent = new Intent(From_Date.this, From_Time.class);
+                    myIntent.putExtra("DETAILS", details_array);
+                    myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
+                    From_Date.this.startActivity(myIntent);
+                }
             }
         });
 
@@ -86,10 +135,16 @@ public class From_Date extends Activity {
                 int day = date_pick_from.getDayOfMonth();
                 String month_word = getMonth(date_pick_from.getMonth() + 1);
                 year = date_pick_from.getYear();
-
-                date_selected=(TextView)findViewById(R.id.date_selected);
-                date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
-                details_array[0] = String.valueOf(date_selected.getText());
+                if(incoming_text[0].equals("ENTERTAINMENT")){
+                    date_selected=(TextView)findViewById(R.id.date_selected);
+                    date_selected.setText(" "+month_word+" "+String.valueOf(year));
+                    details_array[0] = String.valueOf(date_selected.getText());
+                }
+                else {
+                    date_selected = (TextView) findViewById(R.id.date_selected);
+                    date_selected.setText(String.valueOf(" " + day) + " " + month_word + " " + String.valueOf(year));
+                    details_array[0] = String.valueOf(date_selected.getText());
+                }
                 //Log.d("Note: ",details_array[0]);
             }
         });

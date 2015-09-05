@@ -18,6 +18,7 @@ public class Details extends Activity {
     EditText phone_value;
     EditText email_value;
     String[] details_array = new String[7];
+    String[] incoming_text=new String[1];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class Details extends Activity {
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
 
         details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         initialiseVariables();
 
@@ -52,6 +54,7 @@ public class Details extends Activity {
                 details_array[5] = String.valueOf(email_value.getText());
                 details_array[6] = String.valueOf(phone_value.getText());
                 myIntent.putExtra("DETAILS", details_array);
+                myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
                 Details.this.startActivity(myIntent);
             }
         });
@@ -62,7 +65,7 @@ public class Details extends Activity {
                 if (!String.valueOf(name_value.getText()).matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
                     name_value.setTextColor(Color.parseColor("#E17777"));
                     Toast.makeText(Details.this, "Please enter only alphabets", Toast.LENGTH_LONG).show();
-                    imageButton_from.setVisibility(View.GONE);
+                    //imageButton_from.setVisibility(View.GONE);
                 }else {
                     name_value.setTextColor(Color.parseColor("#009688"));
                     imageButton_from.setVisibility(View.VISIBLE);
@@ -75,7 +78,7 @@ public class Details extends Activity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!String.valueOf(phone_value.getText()).matches("^[789]\\d{9}$")){
                     phone_value.setTextColor(Color.parseColor("#E17777"));
-                    Toast.makeText(Details.this, "Please enter a valid Phone Number", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Details.this, "Please enter a valid Phone Number", Toast.LENGTH_LONG).show();
                 }else {
                     phone_value.setTextColor(Color.parseColor("#009688"));
                     imageButton_from.setVisibility(View.VISIBLE);
@@ -89,7 +92,7 @@ public class Details extends Activity {
                 if (String.valueOf(email_value.getText()).length() == 0){
                     email_value.setTextColor(Color.parseColor("#E17777"));
                     Toast.makeText(Details.this, "Please enter a valid Email Id", Toast.LENGTH_LONG).show();
-                    imageButton_from.setVisibility(View.GONE);
+                    //imageButton_from.setVisibility(View.GONE);
                 }else{
                     email_value.setTextColor(Color.parseColor("#009688"));
                     imageButton_from.setVisibility(View.VISIBLE);

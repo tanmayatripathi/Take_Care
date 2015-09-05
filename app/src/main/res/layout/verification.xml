@@ -175,16 +175,41 @@
                 android:layout_below="@+id/to_time_value"
                 android:text=" "
                 android:textSize="20sp" />
-            <ImageView
-                android:layout_margin="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/email_send"
+            <TextView
+                android:id="@+id/package_sel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_7"
-                android:background="@drawable/button_background"
-                android:id="@+id/imageButton_from"
-                android:layout_centerHorizontal="true"
-                android:clickable="true"/>
+                android:text="Package Selected:"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/package_sel_val"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/package_sel"
+                android:textColor="@color/primary"
+                android:textSize="20sp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/package_sel_val"
+                android:layout_centerHorizontal="true">
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_background_support_1"
+                    android:id="@+id/imageButton_from"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/next_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/imageButton_from"
+                    android:text="Mail"/>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

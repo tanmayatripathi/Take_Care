@@ -16,6 +16,7 @@ public class From_Time extends Activity {
     TextView time_selected;
     ImageView imageButton_from;
     String[] details_array = new String[7];
+    String[] incoming_text=new String[1];
     String min_str;
 
     @Override
@@ -29,6 +30,7 @@ public class From_Time extends Activity {
         LayoutInflater mInflater = LayoutInflater.from(this);
 
         details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
         mActionBar.setCustomView(mCustomView);
@@ -85,6 +87,7 @@ public class From_Time extends Activity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(From_Time.this, To_Date.class);
                 myIntent.putExtra("DETAILS", details_array);
+                myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
                 From_Time.this.startActivity(myIntent);
             }
         });
