@@ -37,10 +37,15 @@
                 android:textColor="@color/primary"
                 android:inputType="textPersonName"/>
             <TextView
+                android:id="@+id/name_hint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_value"/>
+            <TextView
                 android:id="@+id/blank_text_0"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name_value"
+                android:layout_below="@+id/name_hint"
                 android:text=" "
                 android:textSize="20sp" />
             <TextView
@@ -59,10 +64,15 @@
                 android:textColor="@color/primary"
                 android:inputType="textEmailAddress"/>
             <TextView
+                android:id="@+id/email_hint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email_value"/>
+            <TextView
                 android:id="@+id/blank_text_2_2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/email_value"
+                android:layout_below="@+id/email_hint"
                 android:text=" "
                 android:textSize="20sp" />
             <TextView
@@ -80,10 +90,15 @@
                 android:textSize="20sp"
                 android:textColor="@color/primary"
                 android:inputType="phone"/>
+            <TextView
+                android:id="@+id/phone_hint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_value"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/phone_value"
+                android:layout_below="@id/phone_hint"
                 android:layout_centerHorizontal="true">
                 <ImageView
                     android:layout_marginTop="15dp"
