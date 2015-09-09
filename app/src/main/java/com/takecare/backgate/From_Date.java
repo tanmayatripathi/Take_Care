@@ -12,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class From_Date extends Activity {
     DatePicker date_pick_from;
     ImageView imageButton_from;
@@ -19,6 +24,7 @@ public class From_Date extends Activity {
     String[] details_array = new String[7];
     String[] incoming_text=new String[1];
     String linear_value;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,14 @@ public class From_Date extends Activity {
         int day = date_pick_from.getDayOfMonth();
         String month_word = getMonth(date_pick_from.getMonth() + 1);
         int year = date_pick_from.getYear();
+        String d1 = sdf.format(new Date());
+        Date d = null;
+        try {
+            d = sdf.parse(d1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        date_pick_from.setMinDate(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 
         if(incoming_text[0].equals("ENTERTAINMENT")){
             date_selected=(TextView)findViewById(R.id.date_selected);

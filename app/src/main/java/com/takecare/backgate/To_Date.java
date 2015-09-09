@@ -11,6 +11,10 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class To_Date extends Activity {
     DatePicker date_pick_from;
     ImageView imageButton_from;
@@ -19,6 +23,7 @@ public class To_Date extends Activity {
     TextView to;
     String[] details_array = new String[7];
     String[] incoming_text=new String[1];
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,18 @@ public class To_Date extends Activity {
         int day = date_pick_from.getDayOfMonth();
         String month_word = getMonth(date_pick_from.getMonth() + 1);
         int year = date_pick_from.getYear();
+
+        String d1 = sdf.format(new Date());
+        Date d = null;
+        try {
+            d = sdf.parse(d1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (incoming_text[0].equals("HOUR")){
+            date_pick_from.setMaxDate(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+        }
+        date_pick_from.setMinDate(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 
         date_selected=(TextView)findViewById(R.id.date_selected);
         date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));
