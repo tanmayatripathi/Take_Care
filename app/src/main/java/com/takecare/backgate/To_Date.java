@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CalendarView;
@@ -23,7 +24,7 @@ public class To_Date extends Activity {
     TextView to;
     String[] details_array = new String[7];
     String[] incoming_text=new String[1];
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,17 +52,17 @@ public class To_Date extends Activity {
 
         date_pick_from = (DatePicker) findViewById(R.id.date_pick_from);
 
-        String d1 = sdf.format(new Date());
-        Date d = null;
+        Date d2 = null;
         try {
-            d = sdf.parse(d1);
+            d2 = sdf.parse(details_array[0].trim());
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         if (incoming_text[0].equals("HOUR")){
-            date_pick_from.setMaxDate(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+            date_pick_from.setMaxDate(d2.getTime() + 2 * 24 * 60 * 60 * 1000);
         }
-        date_pick_from.setMinDate(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+        date_pick_from.setMinDate(d2.getTime() + 1 * 24 * 60 * 60 * 1000);
 
         int day = date_pick_from.getDayOfMonth();
         String month_word = getMonth(date_pick_from.getMonth() + 1);
@@ -158,7 +159,7 @@ public class To_Date extends Activity {
             return "Aug";
         }
         else if(month==9){
-            return "Sept";
+            return "Sep";
         }
         else if(month==10){
             return "Oct";

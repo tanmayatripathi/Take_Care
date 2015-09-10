@@ -193,7 +193,7 @@ public class From_Date extends Activity {
             return "Aug";
         }
         else if(month==9){
-            return "Sept";
+            return "Sep";
         }
         else if(month==10){
             return "Oct";

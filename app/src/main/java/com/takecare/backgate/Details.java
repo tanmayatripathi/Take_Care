@@ -59,7 +59,7 @@ public class Details extends Activity {
                 else if (String.valueOf(email_value.getText()).length() == 0){
                     email_hint.setText("Email cannot be empty");
                 }
-                else if (!String.valueOf(phone_value.getText()).matches("^[789]\\d{9}$") && String.valueOf(phone_value.getText()).length() != 10){
+                else if (!String.valueOf(phone_value.getText()).matches("^[789][0-9]{9}") && String.valueOf(phone_value.getText()).length() != 10){
                     phone_hint.setText("Please enter a valid phone number");
                 }
                 else{
