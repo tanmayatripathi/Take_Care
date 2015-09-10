@@ -50,7 +50,7 @@ public class From_Time extends Activity {
         }else{
             min_str=String.valueOf(minute);
         }
-        time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
+        time_selected.setText(" "+String.valueOf(hour)+":"+min_str+" "+am_pm);
         details_array[1] = String.valueOf(time_selected.getText());
 
         imageButton_from=(ImageView)findViewById(R.id.imageButton_from);
@@ -75,7 +75,7 @@ public class From_Time extends Activity {
                 }else{
                     min_str=String.valueOf(minute);
                 }
-                time_selected.setText(" "+String.valueOf(hour)+" : "+min_str+" "+am_pm);
+                time_selected.setText(" "+String.valueOf(hour)+":"+min_str+" "+am_pm);
                 details_array[1] = String.valueOf(time_selected.getText());
                 //Log.d("Note :",details_array[0]);
                 //Log.d("Note :",details_array[1]);
@@ -95,8 +95,8 @@ public class From_Time extends Activity {
 
     public String get_am_pm(int hour){
         if(hour>11)
-            return "P.M.";
+            return "PM";
         else
-            return "A.M.";
+            return "AM";
     }
 }

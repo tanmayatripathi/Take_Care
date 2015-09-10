@@ -50,9 +50,6 @@ public class To_Date extends Activity {
         mActionBar.setDisplayShowCustomEnabled(true);
 
         date_pick_from = (DatePicker) findViewById(R.id.date_pick_from);
-        int day = date_pick_from.getDayOfMonth();
-        String month_word = getMonth(date_pick_from.getMonth() + 1);
-        int year = date_pick_from.getYear();
 
         String d1 = sdf.format(new Date());
         Date d = null;
@@ -65,6 +62,10 @@ public class To_Date extends Activity {
             date_pick_from.setMaxDate(d.getTime() + 2 * 24 * 60 * 60 * 1000);
         }
         date_pick_from.setMinDate(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+
+        int day = date_pick_from.getDayOfMonth();
+        String month_word = getMonth(date_pick_from.getMonth() + 1);
+        int year = date_pick_from.getYear();
 
         date_selected=(TextView)findViewById(R.id.date_selected);
         date_selected.setText(String.valueOf(" "+day)+" "+month_word+" "+String.valueOf(year));

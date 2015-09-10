@@ -55,10 +55,10 @@ public class From_Date extends Activity {
         }
         date_pick_from.setMinDate(d.getTime() + 1 * 24 * 60 * 60 * 1000);
 
+
         int day = date_pick_from.getDayOfMonth();
         String month_word = getMonth(date_pick_from.getMonth() + 1);
         int year = date_pick_from.getYear();
-
 
         if(incoming_text[0].equals("ENTERTAINMENT")){
             date_selected=(TextView)findViewById(R.id.date_selected);
