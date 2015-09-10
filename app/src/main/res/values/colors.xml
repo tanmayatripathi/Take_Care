@@ -23,7 +23,8 @@
     <color name="cardview_initial_blue">#0266C8</color>
     <drawable name="option_on">#A4C739</drawable>
     <drawable name="option_off">#FFFFFF</drawable>
-    <color name="primary">#009688</color>
+    <!--<color name="primary">#009688</color>-->
+    <color name="primary">#00bdc3</color>
     <color name="primary_dark">#00796B</color>
     <color name="primary_light">#B2DFDB</color>
     <color name="accent">#9E9E9E</color>

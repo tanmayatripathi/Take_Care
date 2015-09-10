@@ -53,16 +53,38 @@ public class Details extends Activity {
         imageButton_from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int check_val=1;
                 if (!String.valueOf(name_value.getText()).matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
-                    name_hint.setText("Please enter a valid name");
-                }
-                else if (String.valueOf(email_value.getText()).length() == 0){
-                    email_hint.setText("Email cannot be empty");
-                }
-                else if (!String.valueOf(phone_value.getText()).matches("^[789][0-9]{9}") && String.valueOf(phone_value.getText()).length() != 10){
-                    phone_hint.setText("Please enter a valid phone number");
+                    name_hint.setVisibility(View.VISIBLE);
+                    name_hint.setText("*Please enter a valid name.");
+                    Toast.makeText(getBaseContext(),"Please enter a valid name.", Toast.LENGTH_LONG).show();
+                    check_val=check_val*0;
                 }
                 else{
+                    name_hint.setVisibility(View.INVISIBLE);
+                    check_val=check_val*1;
+                }
+                if (email_value.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+") && email_value.getText().toString().length() > 0){
+                    email_hint.setVisibility(View.INVISIBLE);
+                    check_val=check_val*1;
+                }
+                else{
+                    email_hint.setVisibility(View.VISIBLE);
+                    email_hint.setText("*Please enter a valid e-mail.");
+                    Toast.makeText(getBaseContext(),"Please enter a valid e-mail.", Toast.LENGTH_LONG).show();
+                    check_val=check_val*0;
+                }
+                if (phone_value.getText().toString().matches("[789][0-9]{9}") && phone_value.getText().toString().length() == 10){
+                    phone_hint.setVisibility(View.INVISIBLE);
+                    check_val=check_val*1;
+                }
+                else{
+                    check_val=check_val*0;
+                    phone_hint.setVisibility(View.VISIBLE);
+                    phone_hint.setText("*Please enter a valid phone number.");
+                    Toast.makeText(getBaseContext(),"Please enter a valid phone number.", Toast.LENGTH_LONG).show();
+                }
+                if(check_val==1){
                     Intent myIntent = new Intent(Details.this, Verification.class);
                     details_array[4] = String.valueOf(name_value.getText());
                     details_array[5] = String.valueOf(email_value.getText());
@@ -126,5 +148,13 @@ public class Details extends Activity {
         email_hint.setTextColor(Color.parseColor("#E17777"));
         phone_hint = (TextView)findViewById(R.id.phone_hint);
         phone_hint.setTextColor(Color.parseColor("#E17777"));
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 }

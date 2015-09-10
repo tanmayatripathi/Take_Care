@@ -47,11 +47,11 @@ public class MainActivity extends Activity {
 
     String[] service_read_more = new String[1];
 
-    String hourly_text = "<font color=#00000>Hourly </font> <font color=#009688>Service</font>";
-    String weekly_text = "<font color=#00000>Weekly </font> <font color=#009688>Service</font>";
-    String weekend_text = "<font color=#00000>Weekend </font> <font color=#009688>Service</font>";
-    String monthly_text = "<font color=#00000>Monthly</font> <font color=#009688>Service</font>";
-    String entertainment_text = "<font color=#00000>Entertainment</font> <font color=#009688>Service</font>";
+    String hourly_text = "<font color=#00000>Hourly </font> <font color=#00bdc3>Service</font>";
+    String weekly_text = "<font color=#00000>Weekly </font> <font color=#00bdc3>Service</font>";
+    String weekend_text = "<font color=#00000>Weekend </font> <font color=#00bdc3>Service</font>";
+    String monthly_text = "<font color=#00000>Monthly</font> <font color=#00bdc3>Service</font>";
+    String entertainment_text = "<font color=#00000>Entertainment</font> <font color=#00bdc3>Service</font>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
