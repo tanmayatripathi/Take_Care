@@ -57,7 +57,6 @@ public class Details extends Activity {
                 if (!String.valueOf(name_value.getText()).matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
                     name_hint.setVisibility(View.VISIBLE);
                     name_hint.setText("*Please enter a valid name.");
-                    Toast.makeText(getBaseContext(),"Please enter a valid name.", Toast.LENGTH_LONG).show();
                     check_val=check_val*0;
                 }
                 else{
@@ -71,10 +70,13 @@ public class Details extends Activity {
                 else{
                     email_hint.setVisibility(View.VISIBLE);
                     email_hint.setText("*Please enter a valid e-mail.");
-                    Toast.makeText(getBaseContext(),"Please enter a valid e-mail.", Toast.LENGTH_LONG).show();
                     check_val=check_val*0;
                 }
                 if (phone_value.getText().toString().matches("[789][0-9]{9}") && phone_value.getText().toString().length() == 10){
+                    phone_hint.setVisibility(View.INVISIBLE);
+                    check_val=check_val*1;
+                }
+                else if (phone_value.getText().toString().matches("[0][0-9]{10}") && phone_value.getText().toString().length() == 11){
                     phone_hint.setVisibility(View.INVISIBLE);
                     check_val=check_val*1;
                 }
@@ -82,7 +84,6 @@ public class Details extends Activity {
                     check_val=check_val*0;
                     phone_hint.setVisibility(View.VISIBLE);
                     phone_hint.setText("*Please enter a valid phone number.");
-                    Toast.makeText(getBaseContext(),"Please enter a valid phone number.", Toast.LENGTH_LONG).show();
                 }
                 if(check_val==1){
                     Intent myIntent = new Intent(Details.this, Verification.class);

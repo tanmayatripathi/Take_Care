@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_0_new"
                 android:text="Name:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/name_value_1"
                 android:layout_width="fill_parent"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_0"
                 android:text="e-mail:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/email_value_1"
                 android:layout_width="fill_parent"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_2"
                 android:text="Phone Number:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/phone_value_1"
                 android:layout_width="fill_parent"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_0_3"
                 android:text="Service start date:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/from_date_value"
                 android:layout_width="fill_parent"
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_4"
                 android:text="Service start time:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/from_time_value"
                 android:layout_width="fill_parent"
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_5"
                 android:text="Service end date:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/to_date_value"
                 android:layout_width="fill_parent"
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_6"
                 android:text="Service end time:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/to_time_value"
                 android:layout_width="fill_parent"
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/blank_text_2_7"
                 android:text="Package Selected:"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/package_sel_val"
                 android:layout_width="fill_parent"
