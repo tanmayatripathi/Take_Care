@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,15 +23,23 @@ public class From_Time extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.from_time);
+
+        details_array = getIntent().getStringArrayExtra("DETAILS");
+        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
+
+        if(incoming_text[0].equals("HOUR")){
+            setContentView(R.layout.from_time_hour);
+            NumberPicker num_pick=(NumberPicker)findViewById(R.id.to_hour_value);
+            num_pick.setMaxValue(24);
+        }
+        else{
+            setContentView(R.layout.from_time);
+        }
 
         ActionBar mActionBar = getActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
-
-        details_array = getIntent().getStringArrayExtra("DETAILS");
-        incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
 
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
         mActionBar.setCustomView(mCustomView);
@@ -85,7 +94,18 @@ public class From_Time extends Activity {
         imageButton_from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(From_Time.this, To_Date.class);
+
+                Intent myIntent;
+                if(incoming_text[0].equals("HOUR")){
+                    NumberPicker num_pick=(NumberPicker)findViewById(R.id.to_hour_value);
+                    num_pick.setMaxValue(24);
+                    details_array[2]="NA";
+                    details_array[3]=String.valueOf(num_pick.getValue());
+                    myIntent = new Intent(From_Time.this, Details.class);
+                }
+                else{
+                    myIntent = new Intent(From_Time.this, To_Date.class);
+                }
                 myIntent.putExtra("DETAILS", details_array);
                 myIntent.putExtra("FLOW_LEVEL_DETAILS", incoming_text);
                 From_Time.this.startActivity(myIntent);

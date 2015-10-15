@@ -1,0 +1,104 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@id/details_data">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/start_time_q"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="On what time would you like the service to start?"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:textSize="20sp" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@id/start_time_q"
+        android:id="@+id/rel_lay_cal">
+
+        <TextView
+            android:id="@+id/from_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="30dp"
+            android:text="From: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_xlarge"/>
+
+        <TextView
+            android:id="@+id/time_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="30dp"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_xlarge"/>
+
+    </RelativeLayout>
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rel_lay_cal"
+        android:timePickerMode="spinner"/>
+
+    <TextView
+        android:id="@+id/end_time_hour"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter the number of hours you want the service: "
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/timePicker1"
+        android:textSize="20sp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/end_time_hour"
+        android:id="@+id/to_hour_value"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/to_hour_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp">
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background_support_7"
+            android:id="@+id/imageButton_from"
+            android:clickable="true"/>
+        <TextView
+            android:id="@+id/next_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageButton_from"
+            android:layout_marginBottom="15dp"
+            android:text="Next"/>
+    </RelativeLayout>
+
+</RelativeLayout>
+    </ScrollView>

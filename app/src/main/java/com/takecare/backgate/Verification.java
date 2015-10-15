@@ -39,13 +39,14 @@ public class Verification extends Activity {
     TextView from_time;
     TextView to_date;
     TextView to_time;
+    TextView to_time_text;
     TextView package_sel_val;
     String[] details_array = new String[7];
     String[] incoming_text=new String[1];
     String msg = "Android: ";
     private static final String username = "takecareapp@yahoo.com";
     private static final String password = "T3st@pp";
-    private static final String email = "tanmayatripathi@gmail.com";
+    private static final String email = "feelresponsible.care@gmail.com";
     ImageView imageButton_from;
 
     @Override
@@ -79,6 +80,7 @@ public class Verification extends Activity {
         from_time = (TextView)findViewById(R.id.from_time_value);
         to_date = (TextView)findViewById(R.id.to_date_value);
         to_time = (TextView)findViewById(R.id.to_time_value);
+        to_time_text = (TextView)findViewById(R.id.to_time_text);
         package_sel_val=(TextView)findViewById(R.id.package_sel_val);
         name_value.setText(details_array[4]);
         email_value.setText(details_array[5]);
@@ -94,8 +96,9 @@ public class Verification extends Activity {
         }
         else if(incoming_text[0].equals("HOUR")){
             from_time.setText(details_array[1]);
-            to_date.setText(details_array[2]);
+            to_date.setText("NA");
             to_time.setText(details_array[3]);
+            to_time_text.setText("No. of Hours service requested for:");
             package_sel_val.setText("Hourly Package");
         }
         else if(incoming_text[0].equals("WEEKLY")){
