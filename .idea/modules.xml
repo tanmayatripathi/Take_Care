@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Take_Care_Closeup.iml" filepath="$PROJECT_DIR$/Take_Care_Closeup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Take_Care.iml" filepath="$PROJECT_DIR$/Take_Care.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
-

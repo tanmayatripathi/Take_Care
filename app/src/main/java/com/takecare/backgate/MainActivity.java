@@ -529,26 +529,3 @@ public class MainActivity extends Activity {
     }
 
 }
-
-/*public class MainActivity extends Activity{
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.from_date);
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.logo_action_bar);
-    }
-
-/*    public void animate(View view){
-        LinearLayout dialog   = (LinearLayout)findViewById(R.id.dialog);
-        dialog.setVisibility(LinearLayout.VISIBLE);
-        Animation animation   =    AnimationUtils.loadAnimation(this, R.anim.anim);
-        animation.setDuration(500);
-        dialog.setAnimation(animation);
-        dialog.animate();
-        animation.start();
-    }
-
-}*/

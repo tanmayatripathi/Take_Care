@@ -21,6 +21,7 @@ public class From_Date extends Activity {
     DatePicker date_pick_from;
     ImageView imageButton_from;
     TextView date_selected;
+    TextView temp_text;
     String[] details_array = new String[7];
     String[] incoming_text=new String[1];
     String linear_value;
@@ -33,6 +34,8 @@ public class From_Date extends Activity {
 
         imageButton_from= (ImageView) findViewById(R.id.imageButton_from);
 
+        temp_text = (TextView) findViewById(R.id.from_text);
+
         ActionBar mActionBar = getActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
@@ -43,6 +46,10 @@ public class From_Date extends Activity {
         mActionBar.setDisplayShowCustomEnabled(true);
 
         incoming_text = getIntent().getStringArrayExtra("FLOW_LEVEL_DETAILS");
+
+        if (incoming_text[0].equals("ENTERTAINMENT")){
+            temp_text.setText("On: ");
+        }
 
         date_pick_from = (DatePicker) findViewById(R.id.date_pick_from);
 
@@ -64,61 +71,6 @@ public class From_Date extends Activity {
         date_selected.setText(String.valueOf(" " + day) + " " + month_word + " " + String.valueOf(year));
         details_array[0] = String.valueOf(date_selected.getText());
 
-        /*if(incoming_text[0].equals("ENTERTAINMENT")){
-            date_selected=(TextView)findViewById(R.id.date_selected);
-            date_selected.setText(" "+month_word+" "+String.valueOf(year));
-            details_array[0] = String.valueOf(date_selected.getText());
-
-            LinearLayout l1=(LinearLayout)date_pick_from.getChildAt(0);
-            LinearLayout ll2 = (LinearLayout)l1.getChildAt(0);
-            linear_value=ll2.getChildAt(0).toString();
-            if(linear_value.toLowerCase().contains("day")) {
-                ll2.getChildAt(0).setVisibility(View.INVISIBLE);
-            }
-            linear_value=ll2.getChildAt(1).toString();
-            if(linear_value.toLowerCase().contains("day")) {
-                ll2.getChildAt(1).setVisibility(View.INVISIBLE);
-            }
-            linear_value=ll2.getChildAt(2).toString();
-            if(linear_value.toLowerCase().contains("day")) {
-                ll2.getChildAt(2).setVisibility(View.INVISIBLE);
-            }
-
-            TextView start_date_q=(TextView) findViewById(R.id.start_date_q);
-            start_date_q.setText("Please select the month in which you would like your entertainment package.");
-
-            TextView from_text=(TextView)findViewById(R.id.from_text);
-            from_text.setText("On: ");
-        }
-        else {
-            date_selected = (TextView) findViewById(R.id.date_selected);
-            date_selected.setText(String.valueOf(" " + day) + " " + month_word + " " + String.valueOf(year));
-            details_array[0] = String.valueOf(date_selected.getText());
-        }*/
-
-
-        /*calend = (CalendarView) findViewById(R.id.calendView);
-
-        ViewGroup vg = (ViewGroup) calend.getChildAt(0);
-        View child = vg.getChildAt(0);
-
-        if(child instanceof TextView) {
-            ((TextView)child).setTextColor(getResources().getColor(R.color.black));
-        }
-
-        calend.setOnDateChangeListener(new OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year,
-                                            int month, int dayOfMonth) {
-                // TODO Auto-generated method stub
-                //animate_rotate();
-                Toast.makeText(
-                        getBaseContext(),
-                        "Selected Date is " + dayOfMonth + " / " + month
-                                + " / " + year, Toast.LENGTH_LONG).show();
-                from_date.setText("From: "+ dayOfMonth + " / " + month + " / " + year);
-            }
-        });*/
 
         addListenerOnButton();
     }
